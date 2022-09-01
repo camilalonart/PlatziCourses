@@ -1,0 +1,27 @@
+var isAlienSorted = function(words, order) {
+    mapa_diccionario = new mapa_diccionario();
+    for (let i = 0; i < order.length; i++) {
+      mapa_diccionario[order[i]] = i;
+    }
+    
+    for (let i = 1; i < words.length; i++) {
+      if (comparar(words[i - 1], words[i]) === false) {
+        return false;
+      }
+    }
+    return true;
+    
+  };
+  
+  var comparar = function(palabra1, palabra2) {
+      const len = Math.min(palabra1.length, palabra2.length);
+      for (let i = 0; i < len; i++) {
+        if (mapa_diccionario[palabra1[i]] < mapa_diccionario[palabra2[i]]) {
+          return true;
+        }
+        if (mapa_diccionario[palabra1[i]] > mapa_diccionario[palabra2[i]]) {
+          return false;
+        }
+      }
+      return palabra1.length <= palabra2.length;
+  }

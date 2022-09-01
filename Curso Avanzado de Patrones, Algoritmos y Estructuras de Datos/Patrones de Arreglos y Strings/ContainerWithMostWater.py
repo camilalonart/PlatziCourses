@@ -5,7 +5,6 @@ c def maxArea(self, height: List[int]) -> int:
     while izquierda < derecha:
         currentArea = min(height[izquierda], height[derecha]) * (derecha - izquierda)
         areaMaxima = max (currentArea, areaMaxima)
-        #queremos dejar de considerar el mas bajo
         if height[izquierda] < height[derecha]:
             izquierda+=1
         else:

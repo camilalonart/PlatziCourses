@@ -1,0 +1,16 @@
+public int maxArea(int[] height) {
+    int areaMaxima = 0;
+    int izquierda = 0;
+    int derecha = height.length - 1;
+    while (izquierda < derecha) {
+        int areaActual = Math.min(height[izquierda], height[derecha]) * (derecha - izquierda);
+        areaMaxima = Math.max(areaActual, areaMaxima);
+        if (height[izquierda] < height[derecha]){
+            izquierda+=1;
+        }
+        else{
+            derecha-=1;
+        }
+    }
+    return areaMaxima;
+}

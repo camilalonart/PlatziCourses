@@ -1,0 +1,11 @@
+def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+    distances = []
+    for x,y in points:
+        distance = (x*x + y*y)**(1/2)
+        distances.append((distance,[x,y]))
+    heapq.heapify(distances)
+    resp = []
+    for _ in range(K):
+        currDistance, coordinates = heapq.heappop(distances)
+        resp.append(coordinates)
+    return resp

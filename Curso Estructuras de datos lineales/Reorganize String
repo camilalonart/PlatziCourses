@@ -1,0 +1,22 @@
+import heapq
+def reorganizeString(self, S: str) -> str:
+    charOccurrences = defaultdict(int)
+    for char in S:
+        charOccurrences[char]+=1
+        if (len(S) + 1) / 2 < charOccurrences[char]:
+            return ""
+    heap = []
+    for key, value in charOccurrences.items():
+        heap.append((-value, key))
+    
+    heapq.heapify(heap)
+    ans = []
+    while 2 <= len(heap):
+        value1, char1 = heapq.heappop(heap)
+        value2, char2 = heapq.heappop(heap)
+        ans.append(char1)
+        ans.append(char2)
+        if value1 + 1: heapq.heappush(heap, (value1 + 1, char1))
+        if value2 + 1: heapq.heappush(heap, (value2 + 1, char2))
+    if heap: return "".join(ans) + (heap[0][1])
+    return "".join(ans)

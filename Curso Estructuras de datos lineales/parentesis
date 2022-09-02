@@ -1,0 +1,11 @@
+bool isValid(string s) {
+    stack<char> theStack;
+    for (char& character : s){
+        if(character == '('){
+            theStack.push('(');}
+        else if (character == ')'){
+            if (theStack.empty() || theStack.top() != '('){
+                return false;}
+            theStack.pop();}}
+    return  theStack.empty();
+}

@@ -10,5 +10,4 @@ def merge(nums1, m, nums2, n) -> None:
             nums1[p] = nums1[p1]
             p1 -= 1
         p -= 1
-    
     nums1[:p2 + 1] = nums2[:p2 + 1]

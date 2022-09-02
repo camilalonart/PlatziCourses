@@ -1,0 +1,19 @@
+def hasCycle(self, head: ListNode) -> bool:
+    if not head: return None
+    lento = head
+    rapido = head.next
+    while lento != rapido:
+        if not rapido or not rapido.next: return False
+        lento = lento.next
+        rapido = rapido.next.next
+    return True
+
+def hasCycle(self, head: ListNode) -> bool:
+    if not head: return False
+    lento = head
+    rapido = head.next
+    while rapido and rapido.next:
+        if rapido == lento: return True
+        rapido, lento = rapido.next.next, lento.next
+    return False
+    

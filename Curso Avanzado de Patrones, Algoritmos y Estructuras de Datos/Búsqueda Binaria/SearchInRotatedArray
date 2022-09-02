@@ -1,0 +1,19 @@
+int busquedaBinaria(vector<int> &nums, int target) {
+    int izquierda = 0;
+    int derecha = nums.size() - 1;
+    int mitad;
+    while (izquierda <= derecha) {
+        mitad = izquierda + (derecha - izquierda) / 2;
+        if (nums[mitad] == target) {
+            return mitad;
+        }
+        else if (nums[mitad] < target) {
+            izquierda = mitad+1;
+        } else {
+            derecha = mitad-1;
+        }
+    }
+    return -1;
+}
+
+

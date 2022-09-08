@@ -7,22 +7,18 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-
 ListNode* oddEvenList(ListNode* head) {
-    if (head == nullptr ||  head->next == nullptr){
-        return head;
+    if (head == nullptr ||  head->next == nullptr){return head;} 
+    ListNode* impa = head;
+    ListNode* par = head->next;
+    ListNode* evenHead = par;
+    while (par && par->next){
+        impa->next = par->next;
+        impa = impa->next;
+        par->next = impa->next;
+        par = par->next;
     }
-    
-    ListNode* odd = head;
-    ListNode* even = head->next;
-    ListNode* evenHead = even;
-    while (even && even->next){
-        odd->next = even->next;
-        odd = odd->next;
-        even->next = odd->next;
-        even = even->next;
-    }
-    odd->next = evenHead;
+    impa->next = evenHead;
     return head;
 }
 

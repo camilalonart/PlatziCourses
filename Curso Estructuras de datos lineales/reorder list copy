@@ -1,0 +1,26 @@
+var reorderList = function(cabeza) {
+    if (!cabeza || !cabeza.siguiente || !cabeza.siguiente.siguiente) return cabeza;
+    // step 1: find middle
+    let rapido = cabeza.siguiente, lento = cabeza;
+    while (rapido && rapido.siguiente) {
+      rapido = rapido.siguiente.siguiente;
+      lento = lento.siguiente;}
+    const comienzoSegundaMitad = lento.siguiente;
+    lento.siguiente = null; // break the list
+    // step 2: reversar segunda mitad
+    let actual = comienzoSegundaMitad, anterior = null, tmp;
+    while (actual) {
+      tmp = actual.siguiente; actual.siguiente = anterior; 
+      anterior = actual; actual = tmp;}
+    // step 3: intercalar nodos de las dos listas
+    let p1 = cabeza, p2 = anterior;
+    while (p2) {
+      tmp = p1.siguiente; p1.siguiente = p2; p2 = p2.siguiente;
+      p1.siguiente.siguiente = tmp;
+      p1 = tmp;}
+  };
+
+function Nodo(valor, siguiente) {
+    this.valor = (valor===undefined ? 0 : valor)
+    this.siguiente = (siguiente===undefined ? null : siguiente)
+}

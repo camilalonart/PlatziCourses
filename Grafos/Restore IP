@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool valid(string s){
+        if(s.length()==0) return false;
+        if(s.length()>1 && s[0]=='0'){
+            return false;
+        }
+        return stoi(s)>=0 && stoi(s)<=255;
+    }
+    
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> solutions;
+        restoreIp(s, solutions, 0, "", 0);
+        return solutions;
+    }
+    void restoreIp(string ip, vector<string>& solutions, int idx, const string& restored, int count) {
+    if (count > 4) return;
+    if (count == 4 && idx == ip.length()) solutions.push_back(restored);
+        for (int i=1; i<4; i++) {
+            if (idx+i > ip.length()) break;
+            string s = ip.substr(idx,i);//diff between java and c++ 
+            if (!valid(s)) continue;
+            restoreIp(ip, solutions, idx+i, restored+s+(count==3?"" : "."), count+1);
+        }
+    }
+};

@@ -1,0 +1,25 @@
+class Grafo:
+    def __init__(self, esGrafoDirigido=True):
+		self.esGrafoDirigido  = esGrafoDirigido
+        self.listaNodos = []
+    def agregar_nodo (self, nodo1, nodo2, peso=1):        
+        self.listaNodos.append([nodo1, nodo2, peso])
+        # If a graph is undirected, add the same nodo,
+        # but also in the opposite direction
+        if not self.esGrafoDirigido :
+            self.listaNodos.append([nodo1, nodo2, peso])
+    def print_lista_nodos(self):
+        for i in range(len(self.listaNodos)):
+            print("nodo ", i+1, ": ", self.listaNodos[i])
+######
+class GNode(object):
+    def _init__(self):
+        self.inDegrees = 0 #inDegrees
+        self.outNodes = []
+class Solution(object):
+    def canFinish(self, prerequisites):
+        graph = defaultdict(GNode)
+        for relation in prerequisites:
+            nextCourse, prevCourse = relation[0], relation[1]
+            graph[prevCourse].outNodes.append(nextCourse)
+            graph[nextCourse].inDegrees += 1

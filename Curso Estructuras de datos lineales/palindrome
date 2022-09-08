@@ -1,28 +1,36 @@
-public boolean isPalindrome(ListNode head) {
+public boolean isPalindrome(Nodo head) {
     if (head == null) return true;
-    ListNode firstHalfEnd = endOfFirstHalf(head);
-    ListNode secondHalfStart = reverseList(firstHalfEnd.next);
-    ListNode p1 = head;
-    ListNode p2 = secondHalfStart;
+    Nodo firstHalfEnd = endOfFirstHalf(head);
+    Nodo secondHalfStart = reverseList(firstHalfEnd.siguiente);
+    Nodo p1 = head;
+    Nodo p2 = secondHalfStart;
     boolean result = true;
     while (result && p2 != null) {
-        if (p1.val != p2.val) result = false;
-        p1 = p1.next; p2 = p2.next;}        
-    firstHalfEnd.next = reverseList(secondHalfStart);
+        if (p1.valor != p2.valor) result = false;
+        p1 = p1.siguiente; p2 = p2.siguiente;}        
+    firstHalfEnd.siguiente = reverseList(secondHalfStart);
     return result;
 }
-private ListNode reverseList(ListNode head) {
-    ListNode prev = null; ListNode curr = head;
+private Nodo reverseList(Nodo head) {
+    Nodo prev = null; Nodo curr = head;
     while (curr != null) {
-        ListNode nextTemp = curr.next;
-        curr.next = prev;
+        Nodo nextTemp = curr.siguiente;
+        curr.siguiente = prev;
         prev = curr; curr = nextTemp;}
     return prev;
 }
-private ListNode endOfFirstHalf(ListNode head) {
-    ListNode fast = head; ListNode slow = head;
-    while (fast.next != null && fast.next.next != null) {
-        fast = fast.next.next;
-        slow = slow.next;}
-    return slow;
+private Nodo endOfFirstHalf(Nodo head) {
+    Nodo rapido = head; Nodo lento = head;
+    while (rapido.siguiente != null && rapido.siguiente.siguiente != null) {
+        rapido = rapido.siguiente.siguiente;
+        lento = lento.siguiente;}
+    return lento;
 }
+
+public class Nodo {
+     int valor;
+     Nodo siguiente;
+     Nodo() {}
+     Nodo(int valor) { this.valor = valor; }
+     Nodo(int valor, Nodo siguiente) { this.valor = valor; this.siguiente = siguiente; }
+ }

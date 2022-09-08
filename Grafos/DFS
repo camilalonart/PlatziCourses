@@ -1,0 +1,32 @@
+//iterativo
+const dfs = (node) => { 
+     stack.push(node);
+     while (!stack.isEmpty()) {
+        node = stack.pop();
+        if (visited[node] == false) {
+           visited[node] = true;
+           for (let j = 0; j < graphAdj[node].length; j++) {
+              if (graphAdj[node][j] === 1){
+                  stack.push(j);
+               }
+            }
+       }
+     }
+}
+
+const dfsIter = function (start, target) {
+    console.log("Visiting Node " + start.value);
+    if (start.value === target) {
+        console.log("Found the node we're looking for!");
+        return start;
+    }
+
+    for (var i = 0; i < start.children.length; i++) {
+        var result = dfs(start.children[i], target);
+        if (result != null) {
+            return result;
+        }
+    }
+    return null;
+};
+

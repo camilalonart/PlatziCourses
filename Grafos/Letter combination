@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string numeroCelular) {
+        vector<string> listaPalabras;
+        unordered_map<char, string> teclado;
+        teclado['2'] = "abc"; 
+        teclado['3'] = "def"; 
+        teclado['4'] = "ghi"; 
+        teclado['5'] = "jkl"; 
+        teclado['6'] = "mno"; 
+        teclado['7'] = "pqrs"; 
+        teclado['8'] = "tuv"; 
+        teclado['9'] = "wxyz";
+        generarCombinaciones(0, numeroCelular, "", listaPalabras, teclado);
+        return listaPalabras;
+    }
+    
+    void generarCombinaciones(int i,string numeroCelular, string path ,vector<string> &listaPalabras, unordered_map<char, string> &pad){
+        if (i == numeroCelular.length()){
+            if (path != "")
+                listaPalabras.push_back(path);
+            return;}
+        for (char ch: pad[numeroCelular[i]]){
+            generarCombinaciones(i+1, numeroCelular, path + ch, listaPalabras, pad);}}
+};

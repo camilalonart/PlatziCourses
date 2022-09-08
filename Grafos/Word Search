@@ -1,0 +1,33 @@
+var exist = function(board, word) {
+    
+    let row = board.length;
+    let column = board[0].length;
+    let resp = false;
+    
+    
+    const dfsBoard = (board, i, j, counter) => {
+        if( i < 0 || j< 0 || i >= row || j >= column || board[i][j] != word[counter]) return;
+        if(board[i][j] == word[counter]) {
+            board[i][j] = '*';
+            if(counter + 1 == word.length) {
+                resp=true
+                return;
+            } 
+            dfsBoard(board, i+1, j, counter + 1);
+            dfsBoard(board, i, j+1, counter + 1);
+            dfsBoard(board, i-1, j, counter + 1);
+            dfsBoard(board, i, j-1, counter + 1);
+            board[i][j] = word[counter];
+        }
+    }
+    
+    
+    for(let g=0; g<row; g++){
+        for(let k=0; k<column; k++){
+            if(word[0] ===  board[g][k]) dfsBoard( board, g, k, 0);
+            if(resp) return true
+        }
+    }
+    return resp;
+    
+};

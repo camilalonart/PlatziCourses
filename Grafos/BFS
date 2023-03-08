@@ -1,0 +1,15 @@
+def BFS(raiz):
+    if not raiz: return []
+    respuesta =[]
+    cola = [raiz]
+    nivel=1
+    while cola:
+        for _ in range(len(cola)):
+            nodoActual = cola.pop(0)
+            print(nodoActual.valor)
+            respuesta.append(nodoActual)
+            for hija in nodoActual.hijas:
+                cola.append(hija)
+        nivel+=1
+    print("la cantidad de niveles de este arbol es:", nivel)
+    return respuesta
